@@ -1,4 +1,5 @@
 Analysis documnent: GunDeathsInAmerica_FINAL.ipynb
+JavaScript visualization: https://sprodhania.github.io/Gun-Deaths-in-America/JavaScript_Visualization/index.html
 
 Context:
 Gun violence in the USA is a major concern because it results in a significant number of deaths and injuries each year, disproportionately impacting certain communities, and causing substantial economic and social burdens, making comprehensive analysis necessary to understand the root causes and develop effective prevention strategies.
