@@ -59,7 +59,7 @@ if (!gunshotRaceData || gunshotRaceData.length === 0) {
         y: aggregatedData["White"], // Default to showing "White" race data
         type: "bar",
         marker: { color: 'orange' }, // Default color for White
-        text: Array.from({ length: 15 }, (_, i) => "White"), // Set text for hover
+        text: Array.from({ length: 15 }, () => "White"), // Set text for hover
         hovertemplate: '%{x}: %{y} deaths<br>Race: %{text}', // Adjusted hover text
         hoverinfo: 'x+y+text'
     };
@@ -72,67 +72,86 @@ if (!gunshotRaceData || gunshotRaceData.length === 0) {
         title: "Deaths in America by Race",
         xaxis: { title: "Year" },
         yaxis: { title: "Count" },
-    };
-
-    // Dropdown menu for race selection
-    let dropdownMenu = {
-        buttons: [
+        updatemenus: [
             {
-                method: 'restyle',
-                args: [
+                buttons: [
                     {
-                        'y': [aggregatedData["Asian/Pacific Islander"]],
-                        'marker.color': ['blue'] // Color for Asian/Pacific Islander
-                    }
-                ],
-                label: "Asian/Pacific Islander"
-            },
-            {
-                method: 'restyle',
-                args: [
+                        method: 'restyle',
+                        args: [
+                            {
+                                y: [aggregatedData["Asian/Pacific Islander"]],
+                                'marker.color': ['blue'],
+                                'text': Array.from({ length: 15 }, () => "Asian/Pacific Islander"),
+                                'hovertemplate': '%{x}: %{y} deaths<br>Race: Asian/Pacific Islander' // Update hover template
+                            }
+                        ],
+                        label: "Asian/Pacific Islander"
+                    },
                     {
-                        'y': [aggregatedData["Black"]],
-                        'marker.color': ['red'] // Color for Black
-                    }
-                ],
-                label: "Black"
-            },
-            {
-                method: 'restyle',
-                args: [
+                        method: 'restyle',
+                        args: [
+                            {
+                                y: [aggregatedData["Black"]],
+                                'marker.color': ['red'],
+                                'text': Array.from({ length: 15 }, () => "Black"),
+                                'hovertemplate': '%{x}: %{y} deaths<br>Race: Black' // Update hover template
+                            }
+                        ],
+                        label: "Black"
+                    },
                     {
-                        'y': [aggregatedData["Hispanic"]],
-                        'marker.color': ['green'] // Color for Hispanic
-                    }
-                ],
-                label: "Hispanic"
-            },
-            {
-                method: 'restyle',
-                args: [
+                        method: 'restyle',
+                        args: [
+                            {
+                                y: [aggregatedData["Hispanic"]],
+                                'marker.color': ['green'],
+                                'text': Array.from({ length: 15 }, () => "Hispanic"),
+                                'hovertemplate': '%{x}: %{y} deaths<br>Race: Hispanic' // Update hover template
+                            }
+                        ],
+                        label: "Hispanic"
+                    },
                     {
-                        'y': [aggregatedData["White"]],
-                        'marker.color': ['orange'] // Color for White
-                    }
-                ],
-                label: "White"
-            },
-            {
-                method: 'restyle',
-                args: [
+                        method: 'restyle',
+                        args: [
+                            {
+                                y: [aggregatedData["White"]],
+                                'marker.color': ['orange'],
+                                'text': Array.from({ length: 15 }, () => "White"),
+                                'hovertemplate': '%{x}: %{y} deaths<br>Race: White' // Update hover template
+                            }
+                        ],
+                        label: "White"
+                    },
                     {
-                        'y': [allRacesData], // Reset to all races
-                        'marker.color': ['gray'] // Single color for all races
+                        method: 'restyle',
+                        args: [
+                            {
+                                y: [aggregatedData["Native American/Native Alaskan"]],
+                                'marker.color': ['purple'],
+                                'text': Array.from({ length: 15 }, () => "Native American/Native Alaskan"),
+                                'hovertemplate': '%{x}: %{y} deaths<br>Race: Native American/Native Alaskan' // Update hover template
+                            }
+                        ],
+                        label: "Native American/Native Alaskan"
+                    },
+                    {
+                        method: 'restyle',
+                        args: [
+                            {
+                                y: [allRacesData],
+                                'marker.color': ['gray'],
+                                'text': Array.from({ length: 15 }, () => "All Races"),
+                                'hovertemplate': '%{x}: %{y} deaths<br>Race: All Races' // Update hover template
+                            }
+                        ],
+                        label: "All Races"
                     }
-                ],
-                label: "All Races"
+                ]
             }
         ]
     };
 
-    // Add dropdown menu to layout2
-    layout2.updatemenus = [dropdownMenu];
-
-    // Re-render second plot with dropdown
+    // Render the second plot
     Plotly.newPlot("plot2", chartData2, layout2);
 }
